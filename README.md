@@ -2,7 +2,7 @@
 
 <img src="https://app.openflare.fun/logo.png" width="110" alt="OpenFlareStudio Logo" style="border-radius: 18px; box-shadow: 0 0 30px rgba(204,255,0,0.3);" />
 
-# ⚡ OpenFlareStudio Studio
+# ⚡ OpenFlare Studio
 
 ### Next-Gen Web3 AI Agentic Platform & Cloudflare One MCP Portals
 
@@ -20,7 +20,7 @@
 
 ## 🚀 Overview
 
-**OpenFlareStudio Studio** is the premier Web3 AI development platform designed for autonomous smart contract engineering, stateful AI agent execution, and Model Context Protocol (MCP) server portals running natively on Cloudflare Workers Edge.
+**OpenFlare Studio** is the premier Web3 AI development platform designed for autonomous smart contract engineering, stateful AI agent execution, and Model Context Protocol (MCP) server portals running natively on Cloudflare Workers Edge.
 
 ```
                      ┌───────────────────────────────────────────────┐
