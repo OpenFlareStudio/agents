@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://app.OpenFlareStudio.fun/logo.png" width="110" alt="OpenFlareStudio Logo" style="border-radius: 18px; box-shadow: 0 0 30px rgba(204,255,0,0.3);" />
+<img src="https://app.openflare.fun/logo.png" width="110" alt="OpenFlareStudio Logo" style="border-radius: 18px; box-shadow: 0 0 30px rgba(204,255,0,0.3);" />
 
 # ⚡ OpenFlareStudio Studio
 
@@ -24,7 +24,7 @@
 
 ```
                      ┌───────────────────────────────────────────────┐
-                     │          OpenFlareStudio AI Engine Core             │
+                     │          OpenFlareStudio AI Engine Core       │
                      │       (16 Frontier AI Models Suite)           │
                      └───────────────────────┬───────────────────────┘
                                              │
