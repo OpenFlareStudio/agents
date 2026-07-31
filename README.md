@@ -1,18 +1,18 @@
 <div align="center">
 
-<img src="https://app.openflare.fun/logo.png" width="110" alt="OpenFlare Logo" style="border-radius: 18px; box-shadow: 0 0 30px rgba(204,255,0,0.3);" />
+<img src="https://app.OpenFlareStudio.fun/logo.png" width="110" alt="OpenFlareStudio Logo" style="border-radius: 18px; box-shadow: 0 0 30px rgba(204,255,0,0.3);" />
 
-# ⚡ OpenFlare Studio
+# ⚡ OpenFlareStudio Studio
 
 ### Next-Gen Web3 AI Agentic Platform & Cloudflare One MCP Portals
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-OpenFlareStudio%2Fagents-CCFF00?style=for-the-badge&logo=github)](https://github.com/OpenFlareStudio/agents)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-OpenFlareStudioStudio%2Fagents-CCFF00?style=for-the-badge&logo=github)](https://github.com/OpenFlareStudioStudio/agents)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4285F4.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Robinhood Chain](https://img.shields.io/badge/Robinhood-EVM%204663-CCFF00?style=for-the-badge&logo=ethereum)](https://app.openflare.fun)
-[![Solana Network](https://img.shields.io/badge/Solana-MCP%20Autofixer-dc1fff?style=for-the-badge&logo=solana)](https://app.openflare.fun)
-[![Cloudflare Edge](https://img.shields.io/badge/Cloudflare-MCP%20Portals-F38020?style=for-the-badge&logo=cloudflare)](https://app.openflare.fun)
+[![Robinhood Chain](https://img.shields.io/badge/Robinhood-EVM%204663-CCFF00?style=for-the-badge&logo=ethereum)](https://app.OpenFlareStudio.fun)
+[![Solana Network](https://img.shields.io/badge/Solana-MCP%20Autofixer-dc1fff?style=for-the-badge&logo=solana)](https://app.OpenFlareStudio.fun)
+[![Cloudflare Edge](https://img.shields.io/badge/Cloudflare-MCP%20Portals-F38020?style=for-the-badge&logo=cloudflare)](https://app.OpenFlareStudio.fun)
 
-[🌐 Live Studio App](https://app.openflare.fun) • [📖 Developer Docs](https://app.openflare.fun/docs) • [🐙 GitHub](https://github.com/OpenFlareStudio/agents) • [𝕏 Twitter](https://x.com/ComingSoon) • [✈️ Telegram](https://t.me/ComingSoon)
+[🌐 Live Studio App](https://app.OpenFlareStudio.fun) • [📖 Developer Docs](https://app.OpenFlareStudio.fun/docs) • [🐙 GitHub](https://github.com/OpenFlareStudioStudio/agents) • [𝕏 Twitter](https://x.com/ComingSoon) • [✈️ Telegram](https://t.me/ComingSoon)
 
 </div>
 
@@ -20,11 +20,11 @@
 
 ## 🚀 Overview
 
-**OpenFlare Studio** is the premier Web3 AI development platform designed for autonomous smart contract engineering, stateful AI agent execution, and Model Context Protocol (MCP) server portals running natively on Cloudflare Workers Edge.
+**OpenFlareStudio Studio** is the premier Web3 AI development platform designed for autonomous smart contract engineering, stateful AI agent execution, and Model Context Protocol (MCP) server portals running natively on Cloudflare Workers Edge.
 
 ```
                      ┌───────────────────────────────────────────────┐
-                     │          OpenFlare AI Engine Core             │
+                     │          OpenFlareStudio AI Engine Core             │
                      │       (16 Frontier AI Models Suite)           │
                      └───────────────────────┬───────────────────────┘
                                              │
@@ -41,7 +41,7 @@
 
 ## ✨ Core Features
 
-* **🤖 Autonomous Agent SDK (`@openflare/agents`)**: Event-driven agent base class with edge state persistence via Durable Objects and real-time WebSocket fibers.
+* **🤖 Autonomous Agent SDK (`@OpenFlareStudio/agents`)**: Event-driven agent base class with edge state persistence via Durable Objects and real-time WebSocket fibers.
 * **🟢 Robinhood EVM Chain (Chain ID 4663)**: Native Solidity compilation, static vulnerability auditing via Blockscout API, and gas estimation.
 * **🟣 Solana MCP Program Autofixer**: Anchor & Pinocchio Rust smart contract error parsing, IDL generation, and automated code repair.
 * **⚡ Cloudflare One MCP Server Portals**: 5x Token Savings optimization via `minimize_tools()` & `search_and_execute()`, reducing context window usage by up to 80%.
@@ -51,23 +51,23 @@
 
 ## 📦 Installation
 
-Since `@openflare/agents` is hosted directly on GitHub, install it directly using npm, yarn, or pnpm:
+Since `@OpenFlareStudio/agents` is hosted directly on GitHub, install it directly using npm, yarn, or pnpm:
 
 ```bash
 # Install directly from GitHub Repository
-npm install github:OpenFlareStudio/agents
+npm install github:OpenFlareStudioStudio/agents
 
 # Using yarn
-yarn add OpenFlareStudio/agents
+yarn add OpenFlareStudioStudio/agents
 
 # Using pnpm
-pnpm add github:OpenFlareStudio/agents
+pnpm add github:OpenFlareStudioStudio/agents
 ```
 
 Or clone and build from source:
 
 ```bash
-git clone https://github.com/OpenFlareStudio/agents.git
+git clone https://github.com/OpenFlareStudioStudio/agents.git
 cd agents
 npm install && npm run build
 ```
@@ -79,11 +79,11 @@ npm install && npm run build
 Create an autonomous Web3 AI agent in TypeScript:
 
 ```typescript
-import { Agent, AgentContext, Message } from "@openflare/agents";
+import { Agent, AgentContext, Message } from "@OpenFlareStudio/agents";
 
 export class Web3AuditorAgent extends Agent {
   async onStart(ctx: AgentContext): Promise<void> {
-    console.log("⚡ OpenFlare Agent booted on Robinhood EVM Chain ID 4663");
+    console.log("⚡ OpenFlareStudio Agent booted on Robinhood EVM Chain ID 4663");
     await ctx.state.set("audits_count", 0);
   }
 
@@ -103,12 +103,12 @@ export class Web3AuditorAgent extends Agent {
 
 ---
 
-## 📖 SDK Reference (`@openflare/agents`)
+## 📖 SDK Reference (`@OpenFlareStudio/agents`)
 
 ### Agent Base Class
 
 ```typescript
-import { Agent, AgentContext, Request, Response } from "@openflare/agents";
+import { Agent, AgentContext, Request, Response } from "@OpenFlareStudio/agents";
 
 export class CustomAgent extends Agent {
   // Boots up agent context
@@ -144,16 +144,16 @@ await ctx.state.delete("session_id");
 ## ⛓️ Robinhood EVM Chain Integration (Chain ID 4663)
 
 ```typescript
-import { RobinhoodEVM } from "@openflare/agents";
+import { RobinhoodEVM } from "@OpenFlareStudio/agents";
 
 const evm = new RobinhoodEVM({
-  rpcUrl: "https://rpc.robinhood.openflare.fun",
+  rpcUrl: "https://rpc.robinhood.OpenFlareStudio.fun",
   chainId: 4663,
 });
 
 const auditResult = await evm.auditContract(`
   pragma solidity ^0.8.20;
-  contract OpenFlareToken {
+  contract OpenFlareStudioToken {
       mapping(address => uint256) public balances;
       function transfer(address to, uint256 amount) public {
           balances[msg.sender] -= amount;
@@ -171,7 +171,7 @@ console.log("Vulnerabilities:", auditResult.issues);
 ## ☀️ Solana MCP Program Autofixer
 
 ```typescript
-import { SolanaMCP } from "@openflare/agents";
+import { SolanaMCP } from "@OpenFlareStudio/agents";
 
 const solana = new SolanaMCP();
 
@@ -187,14 +187,14 @@ console.log("Repaired Rust Code:", fixResult.repairedCode);
 
 ## 🌐 Official Channels & Resources
 
-* 🌐 **Live Application**: [https://app.openflare.fun](https://app.openflare.fun)
-* 📖 **Developer Documentation**: [https://app.openflare.fun/docs](https://app.openflare.fun/docs)
-* 🐙 **GitHub Repository**: [https://github.com/OpenFlareStudio/agents](https://github.com/OpenFlareStudio/agents)
+* 🌐 **Live Application**: [https://app.OpenFlareStudio.fun](https://app.OpenFlareStudio.fun)
+* 📖 **Developer Documentation**: [https://app.OpenFlareStudio.fun/docs](https://app.OpenFlareStudio.fun/docs)
+* 🐙 **GitHub Repository**: [https://github.com/OpenFlareStudioStudio/agents](https://github.com/OpenFlareStudioStudio/agents)
 * 𝕏 **Twitter**: [https://x.com/ComingSoon](https://x.com/ComingSoon)
 * ✈️ **Telegram Community**: [https://t.me/ComingSoon](https://t.me/ComingSoon)
 
 ---
 
 <div align="center">
-  <sub>MIT License © 2026 OpenFlare Foundation</sub>
+  <sub>MIT License © 2026 OpenFlareStudio Foundation</sub>
 </div>
