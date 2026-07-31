@@ -8,11 +8,11 @@
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-OpenFlareStudio%2Fagents-CCFF00?style=for-the-badge&logo=github)](https://github.com/OpenFlareStudio/agents)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4285F4.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Robinhood Chain](https://img.shields.io/badge/Robinhood-EVM%204663-CCFF00?style=for-the-badge&logo=ethereum)](https://app.OpenFlareStudio.fun)
-[![Solana Network](https://img.shields.io/badge/Solana-MCP%20Autofixer-dc1fff?style=for-the-badge&logo=solana)](https://app.OpenFlareStudio.fun)
-[![Cloudflare Edge](https://img.shields.io/badge/Cloudflare-MCP%20Portals-F38020?style=for-the-badge&logo=cloudflare)](https://app.OpenFlareStudio.fun)
+[![Robinhood Chain](https://img.shields.io/badge/Robinhood-EVM%204663-CCFF00?style=for-the-badge&logo=ethereum)](https://app.openflare.fun)
+[![Solana Network](https://img.shields.io/badge/Solana-MCP%20Autofixer-dc1fff?style=for-the-badge&logo=solana)](https://app.openflare.fun)
+[![Cloudflare Edge](https://img.shields.io/badge/Cloudflare-MCP%20Portals-F38020?style=for-the-badge&logo=cloudflare)](https://app.openflare.fun)
 
-[🌐 Live Studio App](https://app.OpenFlareStudio.fun) • [📖 Developer Docs](https://app.OpenFlareStudio.fun/docs) • [🐙 GitHub](https://github.com/OpenFlareStudio/agents) • [𝕏 Twitter](https://x.com/ComingSoon) • [✈️ Telegram](https://t.me/ComingSoon)
+[🌐 Live Studio App](https://app.openflare.fun) • [📖 Developer Docs](https://app.openflare.fun/docs) • [🐙 GitHub](https://github.com/OpenFlareStudio/agents) • [𝕏 Twitter](https://x.com/ComingSoon) • [✈️ Telegram](https://t.me/ComingSoon)
 
 </div>
 
@@ -147,7 +147,7 @@ await ctx.state.delete("session_id");
 import { RobinhoodEVM } from "@OpenFlareStudio/agents";
 
 const evm = new RobinhoodEVM({
-  rpcUrl: "https://rpc.robinhood.OpenFlareStudio.fun",
+  rpcUrl: "https://rpc.robinhood.openflare.fun",
   chainId: 4663,
 });
 
@@ -187,8 +187,8 @@ console.log("Repaired Rust Code:", fixResult.repairedCode);
 
 ## 🌐 Official Channels & Resources
 
-* 🌐 **Live Application**: [https://app.OpenFlareStudio.fun](https://app.OpenFlareStudio.fun)
-* 📖 **Developer Documentation**: [https://app.OpenFlareStudio.fun/docs](https://app.OpenFlareStudio.fun/docs)
+* 🌐 **Live Application**: [https://app.openflare.fun](https://app.openflare.fun)
+* 📖 **Developer Documentation**: [https://app.openflare.fun/docs](https://app.openflare.fun/docs)
 * 🐙 **GitHub Repository**: [https://github.com/OpenFlareStudio/agents](https://github.com/OpenFlareStudio/agents)
 * 𝕏 **Twitter**: [https://x.com/ComingSoon](https://x.com/ComingSoon)
 * ✈️ **Telegram Community**: [https://t.me/ComingSoon](https://t.me/ComingSoon)
