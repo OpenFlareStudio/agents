@@ -6,13 +6,13 @@
 
 ### Next-Gen Web3 AI Agentic Platform & Cloudflare One MCP Portals
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-OpenFlareStudioStudio%2Fagents-CCFF00?style=for-the-badge&logo=github)](https://github.com/OpenFlareStudioStudio/agents)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-OpenFlareStudio%2Fagents-CCFF00?style=for-the-badge&logo=github)](https://github.com/OpenFlareStudio/agents)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4285F4.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Robinhood Chain](https://img.shields.io/badge/Robinhood-EVM%204663-CCFF00?style=for-the-badge&logo=ethereum)](https://app.OpenFlareStudio.fun)
 [![Solana Network](https://img.shields.io/badge/Solana-MCP%20Autofixer-dc1fff?style=for-the-badge&logo=solana)](https://app.OpenFlareStudio.fun)
 [![Cloudflare Edge](https://img.shields.io/badge/Cloudflare-MCP%20Portals-F38020?style=for-the-badge&logo=cloudflare)](https://app.OpenFlareStudio.fun)
 
-[🌐 Live Studio App](https://app.OpenFlareStudio.fun) • [📖 Developer Docs](https://app.OpenFlareStudio.fun/docs) • [🐙 GitHub](https://github.com/OpenFlareStudioStudio/agents) • [𝕏 Twitter](https://x.com/ComingSoon) • [✈️ Telegram](https://t.me/ComingSoon)
+[🌐 Live Studio App](https://app.OpenFlareStudio.fun) • [📖 Developer Docs](https://app.OpenFlareStudio.fun/docs) • [🐙 GitHub](https://github.com/OpenFlareStudio/agents) • [𝕏 Twitter](https://x.com/ComingSoon) • [✈️ Telegram](https://t.me/ComingSoon)
 
 </div>
 
@@ -55,19 +55,19 @@ Since `@OpenFlareStudio/agents` is hosted directly on GitHub, install it directl
 
 ```bash
 # Install directly from GitHub Repository
-npm install github:OpenFlareStudioStudio/agents
+npm install github:OpenFlareStudio/agents
 
 # Using yarn
-yarn add OpenFlareStudioStudio/agents
+yarn add OpenFlareStudio/agents
 
 # Using pnpm
-pnpm add github:OpenFlareStudioStudio/agents
+pnpm add github:OpenFlareStudio/agents
 ```
 
 Or clone and build from source:
 
 ```bash
-git clone https://github.com/OpenFlareStudioStudio/agents.git
+git clone https://github.com/OpenFlareStudio/agents.git
 cd agents
 npm install && npm run build
 ```
@@ -189,7 +189,7 @@ console.log("Repaired Rust Code:", fixResult.repairedCode);
 
 * 🌐 **Live Application**: [https://app.OpenFlareStudio.fun](https://app.OpenFlareStudio.fun)
 * 📖 **Developer Documentation**: [https://app.OpenFlareStudio.fun/docs](https://app.OpenFlareStudio.fun/docs)
-* 🐙 **GitHub Repository**: [https://github.com/OpenFlareStudioStudio/agents](https://github.com/OpenFlareStudioStudio/agents)
+* 🐙 **GitHub Repository**: [https://github.com/OpenFlareStudio/agents](https://github.com/OpenFlareStudio/agents)
 * 𝕏 **Twitter**: [https://x.com/ComingSoon](https://x.com/ComingSoon)
 * ✈️ **Telegram Community**: [https://t.me/ComingSoon](https://t.me/ComingSoon)
 
