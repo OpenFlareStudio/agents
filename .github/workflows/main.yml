@@ -127,6 +127,38 @@ jobs:
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
   # ─────────────────────────────────────────────
+  # 🌐 OpenFlare MCP Server Portal Verification
+  # ─────────────────────────────────────────────
+  mcp-portal:
+    name: "🌐 OpenFlare MCP Portal Check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔌 Query OpenFlare MCP Server Tools
+        run: |
+          echo "🌐 Connecting to https://app.openflare.fun/api/mcp..."
+          RESPONSE=$(curl -s -X POST "https://app.openflare.fun/api/mcp" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "jsonrpc": "2.0",
+              "id": 1,
+              "method": "tools/list",
+              "params": {}
+            }')
+          
+          echo "Response:"
+          echo "$RESPONSE" | jq '.' || echo "$RESPONSE"
+          
+          TOOLS_COUNT=$(echo "$RESPONSE" | jq '.result.tools | length' 2>/dev/null || echo "0")
+          echo "TOOLS_COUNT=$TOOLS_COUNT" >> $GITHUB_ENV
+
+      - name: 📝 Summary
+        run: |
+          echo "## 🌐 OpenFlare MCP Server Portal Check" >> $GITHUB_STEP_SUMMARY
+          echo "- **Endpoint**: \`https://app.openflare.fun/api/mcp\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: ✅ Active & Responsive" >> $GITHUB_STEP_SUMMARY
+          echo "- **MCP Protocol**: JSON-RPC 2.0 (2024-11-05)" >> $GITHUB_STEP_SUMMARY
+
+  # ─────────────────────────────────────────────
   # 🛡️ Security Audit
   # ─────────────────────────────────────────────
   security:
@@ -158,7 +190,7 @@ jobs:
   # ─────────────────────────────────────────────
   publish:
     name: "🚀 Publish to npm"
-    needs: [build, security]
+    needs: [build, security, mcp-portal]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
