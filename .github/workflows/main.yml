@@ -31,7 +31,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: 📦 Install Dependencies
-        run: npm install @cloudflare/workers-types@latest --save-dev
+        run: npm install typescript @cloudflare/workers-types@latest --save-dev
 
       - name: 🔍 Type Check
         run: npx tsc --noEmit
@@ -65,7 +65,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: 📦 Install Dependencies
-        run: npm install @cloudflare/workers-types@latest --save-dev
+        run: npm install typescript @cloudflare/workers-types@latest --save-dev
 
       - name: 🏗️ Build
         run: npm run build
@@ -143,7 +143,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: 📦 Install Dependencies
-        run: npm install @cloudflare/workers-types@latest --save-dev
+        run: npm install typescript @cloudflare/workers-types@latest --save-dev
 
       - name: 🛡️ Audit Dependencies
         run: npm audit --omit=dev || true
@@ -173,7 +173,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
 
       - name: 📦 Install Dependencies
-        run: npm install @cloudflare/workers-types@latest --save-dev
+        run: npm install typescript @cloudflare/workers-types@latest --save-dev
 
       - name: 🏗️ Build
         run: npm run build
