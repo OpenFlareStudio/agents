@@ -1,5 +1,5 @@
 {
-  "name": "@OpenFlareStudio/agents",
+  "name": "@openflarestudio/agents",
   "version": "1.0.0",
   "description": "Official OpenFlare Autonomous Agent SDK for Cloudflare Workers AI, Robinhood EVM Chain (4663), and Solana MCP Portals",
   "main": "dist/index.js",
