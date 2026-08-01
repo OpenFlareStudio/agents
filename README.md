@@ -4,7 +4,7 @@
 
 # ⚡OpenFlare Studio 
 
-### Next-Gen Web3 AI Agentic Platform & Cloudflare One MCP Portals
+### Next-Gen Web3 AI Agentic Platform & Cloudflare One MCP Portals 
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-OpenFlareStudio%2Fagents-CCFF00?style=for-the-badge&logo=github)](https://github.com/OpenFlareStudio/agents)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4285F4.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
