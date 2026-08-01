@@ -1,0 +1,117 @@
+name: "@OpenFlareStudio/agents CI"
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/agents/**"
+      - ".github/workflows/agents.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "packages/agents/**"
+      - ".github/workflows/agents.yml"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    name: Build & Type Check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install peer dependencies
+        working-directory: packages/agents
+        run: npm install @cloudflare/workers-types@latest --save-dev
+
+      - name: Type Check
+        working-directory: packages/agents
+        run: npx tsc --noEmit
+
+      - name: Build
+        working-directory: packages/agents
+        run: npm run build
+
+      - name: Verify dist output
+        working-directory: packages/agents
+        run: |
+          echo "📦 Checking dist output..."
+          test -f dist/index.js || (echo "❌ dist/index.js not found" && exit 1)
+          test -f dist/index.d.ts || (echo "❌ dist/index.d.ts not found" && exit 1)
+          echo "✅ dist/index.js"
+          echo "✅ dist/index.d.ts"
+          echo ""
+          echo "📁 Full dist contents:"
+          ls -la dist/
+
+      - name: Upload build artifacts
+        if: matrix.node-version == 22
+        uses: actions/upload-artifact@v4
+        with:
+          name: agents-dist
+          path: packages/agents/dist/
+          retention-days: 7
+
+  publish:
+    name: Publish to npm
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install peer dependencies
+        working-directory: packages/agents
+        run: npm install @cloudflare/workers-types@latest --save-dev
+
+      - name: Build
+        working-directory: packages/agents
+        run: npm run build
+
+      - name: Check if version changed
+        id: version-check
+        working-directory: packages/agents
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          LOCAL_VERSION=$(node -p "require('./package.json').version")
+          REMOTE_VERSION=$(npm view "$PACKAGE_NAME" version 2>/dev/null || echo "0.0.0")
+
+          echo "📦 Package: $PACKAGE_NAME"
+          echo "🏷️  Local:  v$LOCAL_VERSION"
+          echo "🌐 Remote: v$REMOTE_VERSION"
+
+          if [ "$LOCAL_VERSION" = "$REMOTE_VERSION" ]; then
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+            echo "⏭️  Version unchanged — skipping publish"
+          else
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+            echo "🚀 New version detected — will publish"
+          fi
+
+      - name: Publish to npm
+        if: steps.version-check.outputs.should_publish == 'true'
+        working-directory: packages/agents
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
