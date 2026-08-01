@@ -29,7 +29,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
 
       - name: 📦 Install Dependencies
         run: npm install @cloudflare/workers-types@latest --save-dev
@@ -64,7 +63,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
 
       - name: 📦 Install Dependencies
         run: npm install @cloudflare/workers-types@latest --save-dev
@@ -143,7 +141,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
 
       - name: 📦 Install Dependencies
         run: npm install @cloudflare/workers-types@latest --save-dev
