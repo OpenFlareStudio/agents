@@ -191,8 +191,8 @@ console.log("Repaired Rust Code:", fixResult.repairedCode);
 * 🌐 **Live Application**: [https://app.openflare.fun](https://app.openflare.fun)
 * 📖 **Developer Documentation**: [https://app.openflare.fun/docs](https://app.openflare.fun/docs)
 * 🐙 **GitHub Repository**: [https://github.com/OpenFlareStudio/agents](https://github.com/OpenFlareStudio/agents)
-* 𝕏 **Twitter**: [https://x.com/ComingSoon](https://x.com/ComingSoon)
-* ✈️ **Telegram Community**: [https://t.me/ComingSoon](https://t.me/ComingSoon)
+* 𝕏 **Twitter**: [https://x.com/OpenflareStudio](https://x.com/OpenflareStudio)
+* ✈️ **Telegram Community**: [https://t.me/OpenflareStudio](https://t.me/OpenflareStudio)
 
 ---
 
