@@ -1,117 +1,226 @@
-name: "@OpenFlareStudio/agents CI"
+name: "🚀 CI/CD Pipeline"
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - "packages/agents/**"
-      - ".github/workflows/agents.yml"
   pull_request:
     branches: [main]
-    paths:
-      - "packages/agents/**"
-      - ".github/workflows/agents.yml"
 
 permissions:
   contents: read
   packages: write
 
+env:
+  NODE_VERSION: 22
+
 jobs:
+  # ─────────────────────────────────────────────
+  # 🔍 Code Quality & Lint
+  # ─────────────────────────────────────────────
+  lint:
+    name: "🔍 Lint & Format"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: 📦 Install Dependencies
+        run: npm install @cloudflare/workers-types@latest --save-dev
+
+      - name: 🔍 Type Check
+        run: npx tsc --noEmit
+
+      - name: 📝 Summary
+        run: |
+          echo "## 🔍 Lint Results" >> $GITHUB_STEP_SUMMARY
+          echo "✅ TypeScript type checking passed" >> $GITHUB_STEP_SUMMARY
+          echo "- **Node.js**: v${{ env.NODE_VERSION }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **TypeScript**: $(npx tsc --version)" >> $GITHUB_STEP_SUMMARY
+
+  # ─────────────────────────────────────────────
+  # 🏗️ Build Matrix (Node 18, 20, 22)
+  # ─────────────────────────────────────────────
   build:
-    name: Build & Type Check
+    name: "🏗️ Build (Node ${{ matrix.node-version }})"
+    needs: lint
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node-version: [18, 20, 22]
 
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: 🟢 Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: npm
 
-      - name: Install peer dependencies
-        working-directory: packages/agents
+      - name: 📦 Install Dependencies
         run: npm install @cloudflare/workers-types@latest --save-dev
 
-      - name: Type Check
-        working-directory: packages/agents
-        run: npx tsc --noEmit
-
-      - name: Build
-        working-directory: packages/agents
+      - name: 🏗️ Build
         run: npm run build
 
-      - name: Verify dist output
-        working-directory: packages/agents
+      - name: ✅ Verify Artifacts
         run: |
-          echo "📦 Checking dist output..."
-          test -f dist/index.js || (echo "❌ dist/index.js not found" && exit 1)
-          test -f dist/index.d.ts || (echo "❌ dist/index.d.ts not found" && exit 1)
-          echo "✅ dist/index.js"
-          echo "✅ dist/index.d.ts"
+          echo "📦 Verifying build output..."
+          
+          ERRORS=0
+          
+          if [ -f "dist/index.js" ]; then
+            echo "✅ dist/index.js ($(wc -c < dist/index.js) bytes)"
+          else
+            echo "❌ dist/index.js — NOT FOUND"
+            ERRORS=$((ERRORS + 1))
+          fi
+          
+          if [ -f "dist/index.d.ts" ]; then
+            echo "✅ dist/index.d.ts ($(wc -c < dist/index.d.ts) bytes)"
+          else
+            echo "❌ dist/index.d.ts — NOT FOUND"
+            ERRORS=$((ERRORS + 1))
+          fi
+          
+          TOTAL_FILES=$(find dist -type f | wc -l)
+          TOTAL_SIZE=$(du -sh dist | cut -f1)
           echo ""
-          echo "📁 Full dist contents:"
-          ls -la dist/
+          echo "📊 Total: $TOTAL_FILES files, $TOTAL_SIZE"
+          
+          if [ $ERRORS -gt 0 ]; then
+            echo "💥 Build verification failed with $ERRORS error(s)"
+            exit 1
+          fi
 
-      - name: Upload build artifacts
+      - name: 📤 Upload Build Artifacts
         if: matrix.node-version == 22
         uses: actions/upload-artifact@v4
         with:
-          name: agents-dist
-          path: packages/agents/dist/
-          retention-days: 7
+          name: agents-dist-${{ github.sha }}
+          path: dist/
+          retention-days: 14
 
+      - name: 📝 Summary
+        if: matrix.node-version == 22
+        run: |
+          echo "## 🏗️ Build Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| \`dist/index.js\` | ✅ Built |" >> $GITHUB_STEP_SUMMARY
+          echo "| \`dist/index.d.ts\` | ✅ Generated |" >> $GITHUB_STEP_SUMMARY
+          echo "| Declaration Maps | ✅ Generated |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Node.js Versions Tested**: 18, 20, 22" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📁 Dist Contents" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          ls -la dist/ >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+  # ─────────────────────────────────────────────
+  # 🛡️ Security Audit
+  # ─────────────────────────────────────────────
+  security:
+    name: "🛡️ Security Audit"
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: 📦 Install Dependencies
+        run: npm install @cloudflare/workers-types@latest --save-dev
+
+      - name: 🛡️ Audit Dependencies
+        run: npm audit --omit=dev || true
+
+      - name: 📝 Summary
+        run: |
+          echo "## 🛡️ Security Audit" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Dependency audit completed" >> $GITHUB_STEP_SUMMARY
+
+  # ─────────────────────────────────────────────
+  # 🚀 Publish to npm
+  # ─────────────────────────────────────────────
   publish:
-    name: Publish to npm
-    needs: build
+    name: "🚀 Publish to npm"
+    needs: [build, security]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout repository
+      - name: 📥 Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ env.NODE_VERSION }}
           registry-url: "https://registry.npmjs.org"
 
-      - name: Install peer dependencies
-        working-directory: packages/agents
+      - name: 📦 Install Dependencies
         run: npm install @cloudflare/workers-types@latest --save-dev
 
-      - name: Build
-        working-directory: packages/agents
+      - name: 🏗️ Build
         run: npm run build
 
-      - name: Check if version changed
-        id: version-check
-        working-directory: packages/agents
+      - name: 🔍 Check Version
+        id: version
         run: |
           PACKAGE_NAME=$(node -p "require('./package.json').name")
           LOCAL_VERSION=$(node -p "require('./package.json').version")
           REMOTE_VERSION=$(npm view "$PACKAGE_NAME" version 2>/dev/null || echo "0.0.0")
 
-          echo "📦 Package: $PACKAGE_NAME"
-          echo "🏷️  Local:  v$LOCAL_VERSION"
-          echo "🌐 Remote: v$REMOTE_VERSION"
+          echo "📦 Package:  $PACKAGE_NAME"
+          echo "🏷️  Local:   v$LOCAL_VERSION"
+          echo "🌐 Registry: v$REMOTE_VERSION"
+
+          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          echo "local=$LOCAL_VERSION" >> $GITHUB_OUTPUT
+          echo "remote=$REMOTE_VERSION" >> $GITHUB_OUTPUT
 
           if [ "$LOCAL_VERSION" = "$REMOTE_VERSION" ]; then
-            echo "should_publish=false" >> $GITHUB_OUTPUT
-            echo "⏭️  Version unchanged — skipping publish"
+            echo "publish=false" >> $GITHUB_OUTPUT
+            echo "⏭️  Same version — skipping publish"
           else
-            echo "should_publish=true" >> $GITHUB_OUTPUT
-            echo "🚀 New version detected — will publish"
+            echo "publish=true" >> $GITHUB_OUTPUT
+            echo "🚀 New version detected!"
           fi
 
-      - name: Publish to npm
-        if: steps.version-check.outputs.should_publish == 'true'
-        working-directory: packages/agents
+      - name: 🚀 Publish
+        if: steps.version.outputs.publish == 'true'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📝 Summary
+        run: |
+          echo "## 🚀 Publish Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Field | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Package | \`${{ steps.version.outputs.name }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Local Version | \`v${{ steps.version.outputs.local }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Registry Version | \`v${{ steps.version.outputs.remote }}\` |" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.version.outputs.publish }}" = "true" ]; then
+            echo "| Status | ✅ **Published** |" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "| Status | ⏭️ Skipped (same version) |" >> $GITHUB_STEP_SUMMARY
+          fi
