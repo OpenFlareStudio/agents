@@ -2,7 +2,7 @@
 
 <img src="https://app.openflare.fun/logo.png" width="110" alt="OpenFlareStudio Logo" style="border-radius: 18px; box-shadow: 0 0 30px rgba(204,255,0,0.3);" />
 
-# ⚡ OpenFlare Studio
+# ⚡ OpenFlare Studio 
 
 ### Next-Gen Web3 AI Agentic Platform & Cloudflare One MCP Portals
 
