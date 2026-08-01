@@ -6,6 +6,7 @@
 
 ### Next-Gen Web3 AI Agentic Platform & Cloudflare One MCP Portals 
 
+[![npm version](https://img.shields.io/npm/v/@openflarestudio/agents?style=for-the-badge&color=cb3837&logo=npm)](https://www.npmjs.com/package/@openflarestudio/agents)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-OpenFlareStudio%2Fagents-CCFF00?style=for-the-badge&logo=github)](https://github.com/OpenFlareStudio/agents)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4285F4.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Robinhood Chain](https://img.shields.io/badge/Robinhood-EVM%204663-CCFF00?style=for-the-badge&logo=ethereum)](https://app.openflare.fun)
